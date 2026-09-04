@@ -3,12 +3,10 @@
 import { useEffect, useState } from "react";
 import { api } from "@/utils/api";
 import { 
-  Settings, 
   Save, 
   Volume2, 
   ShieldCheck, 
   Clock, 
-  HelpCircle,
   AlertCircle
 } from "lucide-react";
 
@@ -85,28 +83,28 @@ export default function Playbooks() {
 
   if (loading) {
     return (
-      <div className="flex-grow flex items-center justify-center bg-slate-950 text-amber-500">
+      <div className="flex-grow flex items-center justify-center bg-slate-50 text-blue-600">
         <div className="flex flex-col items-center gap-4">
-          <div className="h-10 w-10 border-4 border-amber-500 border-t-transparent rounded-full animate-spin"></div>
-          <span className="text-sm font-semibold tracking-wider">Loading Configuration...</span>
+          <div className="h-10 w-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+          <span className="text-xs font-bold tracking-wider text-slate-600">Loading Configuration...</span>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="p-8 space-y-8 bg-slate-950 max-w-4xl">
+    <div className="p-8 space-y-8 bg-slate-50 min-h-full max-w-4xl">
       <div>
-        <h1 className="text-3xl font-extrabold text-white tracking-tight">Playbook Settings</h1>
-        <p className="text-slate-400 mt-1">Configure AI agentic behaviors, compliance stopping thresholds, and retry timelines.</p>
+        <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">Playbook Settings</h1>
+        <p className="text-slate-500 mt-1 text-sm">Configure AI agentic behaviors, compliance stopping thresholds, and retry timelines.</p>
       </div>
 
-      <div className="bg-slate-900 border border-slate-800 rounded-xl divide-y divide-slate-800">
+      <div className="bg-white border border-slate-200 rounded-xl divide-y divide-slate-200 shadow-xs">
         {/* Row 1: Outreach Tone */}
         <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
-            <div className="flex items-center gap-2 text-white font-bold text-sm">
-              <Volume2 className="h-4 w-4 text-amber-500" />
+            <div className="flex items-center gap-2 text-slate-900 font-bold text-sm">
+              <Volume2 className="h-4 w-4 text-blue-600" />
               AI Agent Tone
             </div>
             <p className="text-xs text-slate-500 mt-1 leading-relaxed">
@@ -123,8 +121,8 @@ export default function Playbooks() {
                 key={item.id}
                 className={`p-4 rounded-xl border cursor-pointer flex flex-col justify-between transition-all ${
                   tone === item.id 
-                    ? "bg-amber-500/5 border-amber-500 text-amber-400" 
-                    : "bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700"
+                    ? "bg-blue-50/70 border-blue-500 ring-1 ring-blue-500 text-blue-900 shadow-xs" 
+                    : "bg-white border-slate-200 text-slate-600 hover:border-slate-300 hover:bg-slate-50/60"
                 }`}
               >
                 <input 
@@ -136,7 +134,7 @@ export default function Playbooks() {
                   className="sr-only"
                 />
                 <div>
-                  <div className="text-xs font-bold text-white mb-1">{item.label}</div>
+                  <div className="text-xs font-bold text-slate-900 mb-1">{item.label}</div>
                   <div className="text-[10px] text-slate-500 leading-normal">{item.desc}</div>
                 </div>
               </label>
@@ -147,8 +145,8 @@ export default function Playbooks() {
         {/* Row 2: Compliance Rules */}
         <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
-            <div className="flex items-center gap-2 text-white font-bold text-sm">
-              <ShieldCheck className="h-4 w-4 text-purple-500" />
+            <div className="flex items-center gap-2 text-slate-900 font-bold text-sm">
+              <ShieldCheck className="h-4 w-4 text-emerald-600" />
               Compliance Stopping Rules
             </div>
             <p className="text-xs text-slate-500 mt-1 leading-relaxed">
@@ -164,29 +162,29 @@ export default function Playbooks() {
                 value={newRule}
                 onChange={(e) => setNewRule(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addStoppingRule())}
-                className="flex-grow bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-amber-500 text-slate-200"
+                className="flex-grow bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-blue-500 focus:bg-white text-slate-900 placeholder:text-slate-400"
               />
               <button 
                 type="button"
                 onClick={addStoppingRule}
-                className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold text-xs rounded-lg transition-colors"
+                className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300 font-bold text-xs rounded-lg transition-colors"
               >
                 Add Rule
               </button>
             </div>
 
             {/* Keyword tags */}
-            <div className="flex flex-wrap gap-2 pt-2">
+            <div className="flex flex-wrap gap-2 pt-1">
               {stoppingRules.map((rule) => (
                 <span 
                   key={rule}
-                  className="flex items-center gap-1 px-2.5 py-1 bg-red-500/10 text-red-400 border border-red-500/20 text-xs rounded-lg"
+                  className="flex items-center gap-1 px-2.5 py-1 bg-rose-50 text-rose-700 border border-rose-200 text-xs rounded-lg font-medium"
                 >
                   {rule}
                   <button 
                     type="button" 
                     onClick={() => removeStoppingRule(rule)}
-                    className="hover:text-red-300 ml-1 font-bold"
+                    className="hover:text-rose-900 ml-1 font-bold"
                   >
                     ×
                   </button>
@@ -194,9 +192,9 @@ export default function Playbooks() {
               ))}
             </div>
 
-            <div className="p-3 bg-slate-950 border border-slate-800/80 rounded-lg text-[10px] text-slate-500 flex gap-2">
-              <AlertCircle className="h-4 w-4 text-slate-500 shrink-0" />
-              <span>If a customer replies with any of these keywords, the recovery status changes to <b>PAUSED</b>, and notifications stop.</span>
+            <div className="p-3 bg-slate-50 border border-slate-200 rounded-lg text-[10px] text-slate-600 flex gap-2">
+              <AlertCircle className="h-4 w-4 text-slate-400 shrink-0" />
+              <span>If a customer replies with any of these keywords, the recovery status changes to <b>PAUSED</b>, and notifications stop immediately.</span>
             </div>
           </div>
         </div>
@@ -204,8 +202,8 @@ export default function Playbooks() {
         {/* Row 3: Mandate Retry Sequencer */}
         <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
-            <div className="flex items-center gap-2 text-white font-bold text-sm">
-              <Clock className="h-4 w-4 text-blue-500" />
+            <div className="flex items-center gap-2 text-slate-900 font-bold text-sm">
+              <Clock className="h-4 w-4 text-blue-600" />
               Mandate Retry Sequencer
             </div>
             <p className="text-xs text-slate-500 mt-1 leading-relaxed">
@@ -221,29 +219,29 @@ export default function Playbooks() {
                 value={newRetry}
                 onChange={(e) => setNewRetry(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addRetryInterval())}
-                className="flex-grow bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-amber-500 text-slate-200"
+                className="flex-grow bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-blue-500 focus:bg-white text-slate-900 placeholder:text-slate-400"
               />
               <button 
                 type="button"
                 onClick={addRetryInterval}
-                className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold text-xs rounded-lg transition-colors"
+                className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300 font-bold text-xs rounded-lg transition-colors"
               >
                 Add Interval
               </button>
             </div>
 
             {/* Intervals list */}
-            <div className="flex flex-wrap gap-2 pt-2">
+            <div className="flex flex-wrap gap-2 pt-1">
               {retrySequence.map((interval, idx) => (
                 <span 
                   key={idx}
-                  className="flex items-center gap-1.5 px-3 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 text-xs rounded-lg font-mono"
+                  className="flex items-center gap-1.5 px-3 py-1 bg-blue-50 text-blue-700 border border-blue-200 text-xs rounded-lg font-mono font-bold"
                 >
                   Attempt {idx + 1}: {interval >= 1440 ? `${(interval/1440).toFixed(1)}d` : interval >= 60 ? `${(interval/60).toFixed(1)}h` : `${interval}m`}
                   <button 
                     type="button" 
                     onClick={() => removeRetryInterval(idx)}
-                    className="hover:text-blue-300 font-bold"
+                    className="hover:text-blue-900 font-bold"
                   >
                     ×
                   </button>
@@ -255,17 +253,17 @@ export default function Playbooks() {
       </div>
 
       {/* Save panel */}
-      <div className="flex justify-between items-center bg-slate-900 border border-slate-800 p-4 rounded-xl">
+      <div className="flex justify-between items-center bg-white border border-slate-200 p-4 rounded-xl shadow-xs">
         <span className="text-xs text-slate-500">Settings will be immediately applied to all active and incoming cases.</span>
         <div className="flex items-center gap-4">
           {success && (
-            <span className="text-xs text-emerald-400 font-semibold animate-fade-in">Playbook updated successfully!</span>
+            <span className="text-xs text-emerald-600 font-bold animate-fade-in">Playbook updated successfully!</span>
           )}
           <button
             type="button"
             onClick={handleSave}
             disabled={saving}
-            className="flex items-center gap-2 px-5 py-2 bg-amber-500 hover:bg-amber-600 disabled:bg-amber-500/50 text-slate-950 font-bold text-sm rounded-lg transition-colors shadow-lg shadow-amber-500/15"
+            className="flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-300 text-white font-bold text-sm rounded-lg transition-colors shadow-sm shadow-blue-500/15"
           >
             <Save className="h-4 w-4" />
             {saving ? "Saving..." : "Save Playbook"}
@@ -275,3 +273,4 @@ export default function Playbooks() {
     </div>
   );
 }
+
