@@ -19,7 +19,7 @@ export default function Sidebar() {
     { name: "Recovery Batches", href: "/batches", icon: Layers },
     { name: "Failure Cases", href: "/cases", icon: ShieldAlert },
     { name: "Agent Playground", href: "/playground", icon: PlayCircle },
-    { name: "Playbook Settings", href: "/playbooks", icon: Settings },
+    { name: "Settings", href: "/playbooks", icon: Settings },
   ];
 
   return (

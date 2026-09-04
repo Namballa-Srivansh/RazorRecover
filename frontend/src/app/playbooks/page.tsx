@@ -95,7 +95,7 @@ export default function Playbooks() {
   return (
     <div className="p-8 space-y-8 bg-slate-50 min-h-full max-w-4xl">
       <div>
-        <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">Playbook Settings</h1>
+        <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">Settings</h1>
         <p className="text-slate-500 mt-1 text-sm">Configure AI agentic behaviors, compliance stopping thresholds, and retry timelines.</p>
       </div>
 
@@ -257,7 +257,7 @@ export default function Playbooks() {
         <span className="text-xs text-slate-500">Settings will be immediately applied to all active and incoming cases.</span>
         <div className="flex items-center gap-4">
           {success && (
-            <span className="text-xs text-emerald-600 font-bold animate-fade-in">Playbook updated successfully!</span>
+            <span className="text-xs text-emerald-600 font-bold animate-fade-in">Settings updated successfully!</span>
           )}
           <button
             type="button"
@@ -266,7 +266,7 @@ export default function Playbooks() {
             className="flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-300 text-white font-bold text-sm rounded-lg transition-colors shadow-sm shadow-blue-500/15"
           >
             <Save className="h-4 w-4" />
-            {saving ? "Saving..." : "Save Playbook"}
+            {saving ? "Saving..." : "Save Settings"}
           </button>
         </div>
       </div>
