@@ -32,7 +32,7 @@ app.use('/api/cases', require('./routes/caseRoutes'));
 app.use('/api/playbooks', require('./routes/playbookRoutes'));
 app.use('/api/dashboard', require('./routes/dashboardRoutes'));
 
-// Seed function for beautiful initial visual demo
+// Seed function for initial demo
 const seedDatabase = async () => {
   try {
     // Check playbook
