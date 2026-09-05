@@ -41,11 +41,7 @@ yarn-error.log*
 Thumbs.db
 desktop.ini
 
-# IDE config files (optional but good practice)
+# IDE config files 
 .vscode/
 .idea/
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+
